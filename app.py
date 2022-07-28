@@ -59,9 +59,7 @@ def predict(predict):
     output = round(prediction[0][1]*100,2)
     prediction_label = int(model.predict(final_features.reshape(1,-1))[0])
     cur.execute("""
-            INSERT INTO new_sensor_data
-            VALUES (?,?,?,?)
-            ;
+            INSERT INTO new_sensor_data VALUES (%s,%s,%s,%s);
             """,(datetime.now().strftime("%d/%m/%Y %H:%M:%S"),received[keys[0]],received[keys[1]],received[keys[2]]))
     
     return render_template('index.html',temperature=temp,humidity=humid,volume=vol,prediction_text='Probability of anomaly is {}%'.format(output),prediction = prediction_label)
