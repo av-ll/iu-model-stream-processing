@@ -6,7 +6,7 @@ import json
 import warnings
 import os
 import psycopg2
-import datetime
+from datetime import datetime
 
 warnings.filterwarnings("ignore")
 
