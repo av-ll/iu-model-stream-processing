@@ -63,7 +63,7 @@ def predict(predict):
     time_of_production = str(datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
     global counter
     cur.execute("""
-            INSERT INTO new_sensor_data VALUES (%s,%s,%s,%s);
+            INSERT INTO new_sensor_data VALUES (%s,%s,%s,%s,%s);
             """,(counter,time_of_production,received[keys[0]],received[keys[1]],received[keys[2]],))
     conn.commit()
     
