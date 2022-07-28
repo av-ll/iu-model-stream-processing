@@ -26,7 +26,7 @@ cur.execute("""CREATE SEQUENCE IF NOT EXISTS table_name_id_seq;""")
 conn.commit()
 cur.execute("""
         CREATE TABLE IF NOT EXISTS new_sensor_data (
-                item_id SERIAL DEFAULT nextval('table_name_id_seq') PRIMARY KEY,
+                item_id SERIAL DEFAULT nextval('table_name_id_seq'),
                 time VARCHAR(30),
                 temperature FLOAT8,
                 humidity FLOAT8,
