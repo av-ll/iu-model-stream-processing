@@ -29,7 +29,7 @@ cur.execute("""
                 time VARCHAR(30),
                 temperature FLOAT8,
                 humidity FLOAT8,
-                volume FLOAT8
+                volume FLOAT8,
                 labels BOOLEAN
         );
         """)
