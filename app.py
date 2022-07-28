@@ -22,16 +22,15 @@ DATABASE_URL = os.environ['DATABASE_URL']
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 cur = conn.cursor()
-cur.execute("""CREATE SEQUENCE IF NOT EXISTS table_name_id_seq;""")
-conn.commit()
+
 cur.execute("""
         CREATE TABLE IF NOT EXISTS new_sensor_data (
-                item_id SERIAL DEFAULT nextval('table_name_id_seq'),
+                
                 time VARCHAR(30),
                 temperature FLOAT8,
                 humidity FLOAT8,
                 volume FLOAT8
-                
+                labels BOOLEAN
         );
         """)
 conn.commit()
@@ -65,7 +64,7 @@ def predict(predict):
     
     cur.execute("""
             INSERT INTO new_sensor_data VALUES (%s,%s,%s,%s,%s);
-            """,(time_of_production,received[keys[0]],received[keys[1]],received[keys[2]],prediction_label,))
+            """,(time_of_production,received[keys[0]],received[keys[1]],received[keys[2]],prediction_label))
     conn.commit()
     
        
