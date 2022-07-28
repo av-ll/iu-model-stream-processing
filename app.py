@@ -26,7 +26,7 @@ cur = conn.cursor()
 cur.execute("""
         CREATE TABLE IF NOT EXISTS new_sensor_data (
                 item_id SERIAL PRIMARY KEY,
-                time TIMESTAMP,
+                time VARCHAR(30),
                 temperature FLOAT8,
                 humidity FLOAT8,
                 volume FLOAT8
