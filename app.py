@@ -62,7 +62,7 @@ def predict(predict):
             VALUES (?,?,?,?)
             ;
             """,(datetime.now().strftime("%d/%m/%Y %H:%M:%S"),received[keys[0]],received[keys[1]],received[keys[2]]))
-    cur.commit()
+    
     return render_template('index.html',temperature=temp,humidity=humid,volume=vol,prediction_text='Probability of anomaly is {}%'.format(output),prediction = prediction_label)
 
 # Main loop
