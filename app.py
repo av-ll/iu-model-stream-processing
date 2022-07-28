@@ -22,7 +22,7 @@ DATABASE_URL = os.environ['DATABASE_URL']
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 cur = conn.cursor()
-cur.execute("""CREATE SEQUENCE table_name_id_seq;""")
+cur.execute("""CREATE SEQUENCE IF NOT EXISTS table_name_id_seq;""")
 conn.commit()
 cur.execute("""
         CREATE TABLE IF NOT EXISTS new_sensor_data (
