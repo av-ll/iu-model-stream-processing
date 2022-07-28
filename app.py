@@ -28,8 +28,8 @@ cur.execute("""
                 time TIMESTAMP,
                 temperature FLOAT8,
                 humidity FLOAT8,
-                volume FLOAT8,
-                ON UPDATE CASCADE ON DELETE CASCADE
+                volume FLOAT8
+                
         );
         """)
 
