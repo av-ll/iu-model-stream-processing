@@ -1,2 +1,2 @@
 # iu-model-stream-processing
-University beginner API project 
+University beginner ML API project 
