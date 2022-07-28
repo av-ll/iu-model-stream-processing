@@ -33,7 +33,7 @@ cur.execute("""
                 
         );
         """)
-
+conn.commit()
 #loading the model which was generated in pickle format
 
 @app.route('/')
@@ -61,7 +61,7 @@ def predict(predict):
     cur.execute("""
             INSERT INTO new_sensor_data VALUES (%s,%s,%s,%s);
             """,(str(datetime.now().strftime("%d/%m/%Y %H:%M:%S")),received[keys[0]],received[keys[1]],received[keys[2]]))
-    
+    conn.commit()
     return render_template('index.html',temperature=temp,humidity=humid,volume=vol,prediction_text='Probability of anomaly is {}%'.format(output),prediction = prediction_label)
 
 # Main loop
