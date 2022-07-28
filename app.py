@@ -4,13 +4,34 @@ from flask import Flask,request,jsonify,render_template
 import pickle
 import json
 import warnings
+import os
+import psycopg2
 
 warnings.filterwarnings("ignore")
 
-#creating app with Flask
+#creating app name with Flask
 
 app = Flask(__name__)
 model = pickle.load(open('model.pkl','rb'))
+
+# creating database
+
+DATABASE_URL = os.environ['DATABASE_URL']
+
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+
+cur = conn.cursor()
+
+cur.execute("""
+        CREATE TABLE IF NOT EXISTS new_sensor_data (
+                item_id SERIAL PRIMARY KEY,
+                time TIMESTAMP,
+                temperature FLOAT8,
+                humidity FLOAT8,
+                volume FLOAT8,
+                ON UPDATE CASCADE ON DELETE CASCADE
+        );
+        """)
 
 #loading the model which was generated in pickle format
 
@@ -22,6 +43,7 @@ def home():
 # displays the data received of each feature and the predicted
 # probability, also returns an hidden label (0 or 1) which can then
 # be scraped with beautiful soup or libraries like that
+# and lastly also stores the value in a cloud postgre database in heroku
 @app.route('/api/<predict>',methods=['POST'])
 def predict(predict):
     received = request.get_json(predict)
@@ -35,6 +57,12 @@ def predict(predict):
     prediction = prediction.tolist()
     output = round(prediction[0][1]*100,2)
     prediction_label = int(model.predict(final_features.reshape(1,-1))[0])
+    cur.execute("""
+            INSERT INTO new_sensor_data
+            VALUES (?,?,?,?)
+            ;
+            """,(datetime.now().strftime("%d/%m/%Y %H:%M:%S"),received[keys[0]],received[keys[1]],received[keys[2]]))
+    cur.commit()
     return render_template('index.html',temperature=temp,humidity=humid,volume=vol,prediction_text='Probability of anomaly is {}%'.format(output),prediction = prediction_label)
 
 # Main loop
