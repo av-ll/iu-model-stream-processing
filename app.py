@@ -32,7 +32,7 @@ cur.execute("""
                 temperature FLOAT8,
                 humidity FLOAT8,
                 volume FLOAT8,
-                labels BOOLEAN
+                labels SMALLINT
         );
         """)
 conn.commit()
