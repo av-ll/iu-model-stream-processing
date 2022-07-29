@@ -23,6 +23,8 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 cur = conn.cursor()
 
+cur.execute(""" DROP TABLE IF EXISTS new_sensor_data;""")
+conn.commit()
 cur.execute("""
         CREATE TABLE IF NOT EXISTS new_sensor_data (
                 
