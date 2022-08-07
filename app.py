@@ -23,8 +23,6 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 cur = conn.cursor()
 
-cur.execute("""ALTER ROLE petgqhnphhnpbm CONNECTION LIMIT -1;""")
-
 cur.execute(""" DROP TABLE IF EXISTS new_sensor_data;""")
 
 cur.execute("""
