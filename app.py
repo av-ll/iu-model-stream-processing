@@ -72,6 +72,6 @@ def predict(predict):
        
     return render_template('index.html',temperature=temp,humidity=humid,volume=vol,prediction_text='Probability of anomaly is {}%'.format(output),prediction = prediction_label)
 
-# Main loop
+# Main loop 
 if __name__ == '__main__':
     app.run(debug=True)
