@@ -42,7 +42,7 @@ cur.execute("""
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('welcome.html')
 
 # the app receives a json containing the data to be predicted
 # displays the data received of each feature and the predicted
