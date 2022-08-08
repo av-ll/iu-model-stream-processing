@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html >
+
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>ML API</title>
+
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+
+<style>
+body {text-align: center;}
+h1 {
+  font-size: 60px;
+}
+.Row {
+    display: table;
+    width: 100%; /*Optional*/
+    table-layout: fixed; /*Optional*/
+    border-spacing: 10px; /*Optional*/
+}
+.Column {
+    display: table-cell;
+    background-color: red; /*Optional*/
+}
+</style>
+
+</head>
+
+
+
+
+<body>
+
+ <div class="login">
+
+	<h1>Dashboard</h1>
+	<h2>You need to send a post request to ~/api/predict in order to get a prediction </h2>
+<br>
+<br>
+ </div>
+
+ <div class="Row">
+     <div class="Column">{{temperature}}</div>
+     <div class="Column">{{humidity}}</div>
+     <div class="Column">{{volume}}</div>
+ </div>
+     <!-- Main Input For Receiving Query to our ML -->
+
+
+     <br>
+
+     <br>
+
+
+
+
+   <br>
+
+   <br>
+<p1 hidden>{{prediction}}</p1>
+   {{ prediction_text }}
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
