@@ -68,6 +68,7 @@ def predict(predict):
             INSERT INTO new_sensor_data VALUES (%s,%s,%s,%s,%s);
             """,(time_of_production,received[keys[0]],received[keys[1]],received[keys[2]],prediction_label))
     conn.commit()
+    conn.close()
     
        
     return render_template('index.html',temperature=temp,humidity=humid,volume=vol,prediction_text='Probability of anomaly is {}%'.format(output),prediction = prediction_label)
