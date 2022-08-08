@@ -74,7 +74,7 @@ def predict(predict):
     conn1.close()
     
        
-    return output,render_template('index.html',temperature=temp,humidity=humid,volume=vol,prediction_text='Probability of anomaly is {}%'.format(output),prediction = prediction_label)
+    return render_template('index.html',temperature=temp,humidity=humid,volume=vol,prediction_text='Probability of anomaly is {}%'.format(output),prediction = prediction_label)
 
 # Main loop 
 if __name__ == '__main__':
