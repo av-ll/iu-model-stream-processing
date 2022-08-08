@@ -19,7 +19,7 @@ model = pickle.load(open('model.pkl','rb'))
 
 DATABASE_URL = os.environ['DATABASE_URL']
 
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+conn = psycopg2.connect(DATABASE_URL)
 
 cur = conn.cursor()
 
