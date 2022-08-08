@@ -35,7 +35,8 @@ cur.execute("""
                 labels SMALLINT
         );
         """)
-
+conn.commit()
+conn.close()
 #loading the model which was generated in pickle format
 
 
@@ -64,11 +65,13 @@ def predict(predict):
     prediction_label = int(model.predict(final_features.reshape(1,-1))[0])
     time_of_production = str(datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
     
-    cur.execute("""
+    conn1 = psycopg2.connect(DATABASE_URL)
+    cur1 = conn1.cursor()
+    cur1.execute("""
             INSERT INTO new_sensor_data VALUES (%s,%s,%s,%s,%s);
             """,(time_of_production,received[keys[0]],received[keys[1]],received[keys[2]],prediction_label))
-    conn.commit()
-    conn.close()
+    conn1.commit()
+    conn1.close()
     
        
     return render_template('index.html',temperature=temp,humidity=humid,volume=vol,prediction_text='Probability of anomaly is {}%'.format(output),prediction = prediction_label)
