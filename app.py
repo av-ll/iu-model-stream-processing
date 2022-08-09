@@ -15,7 +15,7 @@ warnings.filterwarnings("ignore")
 app = Flask(__name__)
 model = pickle.load(open('model.pkl','rb'))
 
-# creating database
+# connecting database
 
 DATABASE_URL = os.environ['DATABASE_URL']
 
