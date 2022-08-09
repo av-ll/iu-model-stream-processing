@@ -23,8 +23,6 @@ conn = psycopg2.connect(DATABASE_URL)
 
 cur = conn.cursor()
 
-cur.execute(""" DROP TABLE IF EXISTS new_sensor_data;""")
-
 cur.execute("""
         CREATE TABLE IF NOT EXISTS new_sensor_data (
                 
